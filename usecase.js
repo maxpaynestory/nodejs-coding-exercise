@@ -67,16 +67,14 @@ processPayment = (
     }
   }
 
-  if (result) {
-    const maskedNuber = "************" + creditCardNumber.substr(-4);
-    const transaction = new Transaction({
-      mysql_user_id: user_id,
-      creditCardNumber: maskedNuber,
-      amount: amount.toString(),
-      completed: result,
-    });
-    transaction.save();
-  }
+  const maskedNuber = "************" + creditCardNumber.substr(-4);
+  const transaction = new Transaction({
+    mysql_user_id: user_id,
+    creditCardNumber: maskedNuber,
+    amount: amount.toString(),
+    completed: result,
+  });
+  transaction.save();
 
   return result;
 };

@@ -1,4 +1,4 @@
-# Express Coding Excercise
+# Express Coding Exercise
 
 ## Setup
 Place MySQL and Mongodb credentials inside .env file

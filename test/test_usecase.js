@@ -49,7 +49,7 @@ describe("Usecase TestSuite", () => {
     );
     expect(spy).to.have.been.called.once;
     var spy2 = chai.spy();
-    usecases.__set__("expensivePayment", (amount) => {
+    usecases.__set__("expensivePayment", () => {
       return false;
     });
     usecases.__set__("cheapPayment", spy2);
@@ -71,7 +71,7 @@ describe("Usecase TestSuite", () => {
       securityCode = 276,
       amount = 501,
       user_id = 123;
-    var spy2 = chai.spy(function (amount) {
+    var spy2 = chai.spy(function () {
       return true;
     });
     usecases.__set__("premiumPayment", spy2);
@@ -84,7 +84,7 @@ describe("Usecase TestSuite", () => {
       user_id
     );
     expect(spy2).to.have.been.called.once;
-    var spy3 = chai.spy(function (amount) {
+    var spy3 = chai.spy(function () {
       return false;
     });
     usecases.__set__("premiumPayment", spy3);

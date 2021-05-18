@@ -11,15 +11,33 @@ validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-cheapPayment = (amount) => {
+cheapPayment = (
+  creditCardNumber,
+  cardHolder,
+  expirationDate,
+  securityCode,
+  amountInt
+) => {
   return true;
 };
 
-expensivePayment = (amount) => {
+expensivePayment = (
+  creditCardNumber,
+  cardHolder,
+  expirationDate,
+  securityCode,
+  amountInt
+) => {
   return true;
 };
 
-premiumPayment = (amount) => {
+premiumPayment = (
+  creditCardNumber,
+  cardHolder,
+  expirationDate,
+  securityCode,
+  amountInt
+) => {
   return true;
 };
 
@@ -50,16 +68,40 @@ processPayment = (
 
   let result = false;
   if (amountInt < 20) {
-    result = cheapPayment(amountInt);
+    result = cheapPayment(
+      creditCardNumber,
+      cardHolder,
+      expirationDate,
+      securityCode,
+      amountInt
+    );
   } else if (amountInt >= 20 && amountInt <= 500) {
-    result = expensivePayment(amountInt);
+    result = expensivePayment(
+      creditCardNumber,
+      cardHolder,
+      expirationDate,
+      securityCode,
+      amountInt
+    );
     if (!result) {
-      result = cheapPayment(amountInt);
+      result = cheapPayment(
+        creditCardNumber,
+        cardHolder,
+        expirationDate,
+        securityCode,
+        amountInt
+      );
     }
   } else if (amountInt > 500) {
     let tries = 0;
     while (tries < 3) {
-      result = premiumPayment(amountInt);
+      result = premiumPayment(
+        creditCardNumber,
+        cardHolder,
+        expirationDate,
+        securityCode,
+        amountInt
+      );
       if (result) {
         break;
       }
@@ -71,7 +113,7 @@ processPayment = (
   const transaction = new Transaction({
     mysql_user_id: user_id,
     creditCardNumber: maskedNuber,
-    amount: amount.toString(),
+    amount: amountInt.toString(),
     completed: result,
   });
   transaction.save();

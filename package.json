@@ -1,0 +1,40 @@
+{
+  "name": "chatbot-express-app",
+  "version": "1.0.0",
+  "description": "backend app made in express",
+  "main": "server.js",
+  "scripts": {
+    "start:dev": "nodemon server.js",
+    "test": "mocha --timeout 10000 test/**/*.js --exit"
+  },
+  "author": "Usama Ahmed",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "card-validator": "^8.1.1",
+    "chai": "^4.2.0",
+    "chai-spies": "^1.0.0",
+    "check-password-strength": "^2.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "express-rate-limit": "^5.2.6",
+    "mocha": "^8.1.3",
+    "mockgoose": "^8.0.4",
+    "mongoose": "^5.10.9",
+    "mysql": "^2.18.1",
+    "promise-mysql": "^5.0.3",
+    "request": "^2.88.2",
+    "rewire": "^5.0.0",
+    "supertest": "^5.0.0",
+    "swagger-jsdoc": "^6.0.1",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^6.9.2",
+    "nock": "^13.0.4",
+    "nodemon": "^2.0.7"
+  }
+}

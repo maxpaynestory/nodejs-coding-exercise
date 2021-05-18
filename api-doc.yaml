@@ -1,0 +1,104 @@
+components:
+  securitySchemes:
+    jwttoken:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+paths:
+  /processpayment:
+    post:
+      summary: Process my payment
+      security:
+        - jwttoken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                creditCardNumber:
+                  type: string
+                  description: Number of credit card
+                  example: "4003 3544 2337 0253"
+                cardHolder:
+                  type: string
+                  description: Name of card holder
+                  example: "Emily Phillips"
+                expirationDate:
+                  type: string
+                  description: expiry month and year
+                  example: "10/2023"
+                securityCode:
+                  type: integer
+                  description: security code, CVV
+                  example: 276
+                amount:
+                  type: integer
+                  description: amount to be charged
+                  example: 123.55
+  /login:
+    post:
+      summary: Login with user credentials
+      responses:
+        "404":
+          description: Login Failed
+        "400":
+          description: Bad request
+        "200":
+          description: Login in successfull
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    description: access token to be used for authorization bearer
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJpYXQiOjE2MjEzMTgzODAsImV4cCI6MTYyMTMxOTU4MH0.-TUfUptyMopKGcqVtI5vNSXeJ2v0U6lAbjNMQ"
+                  refreshToken:
+                    type: string
+                    description: refresh token to get a new token
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJpYXQiOjE2MjEzMTgzODB9.6n_UlYyLuG-hnMvBh3RlzVw9hfKglXwVCGTDJo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: email of user
+                  example: 'someemail@someexample.com'
+                password:
+                  type: string
+                  description: password of user
+                  example: "asa@12121LA/./'"
+  /register:
+    post:
+      summary: Register a new user
+      responses:
+        "200":
+          description: User registration completed
+        "400":
+          description: Bad request, something is missing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email of user
+                  example: 'someemail@someexample.com'
+                password:
+                  type: string
+                  description: password
+                  example: "asa@12121LA/./'"
+                password_confirmation:
+                  type: string
+                  description: confirm password
+                  example: "asa@12121LA/./'"
